@@ -8,14 +8,14 @@ def get_meme():
 
     meme_endpoint = 'https://meme-api.com/gimme'
     response = json.loads(requests.get(meme_endpoint).text)
-    meme_image = response['url']
+    meme_pic = response['preview'][-1]
 
-    return meme_image
+    return meme_pic
 
 @app.route('/')
 def index():
-    meme = get_meme()
+    meme_pic = get_meme()
 
-    return render_template('index.html', meme_pic=meme)
+    return render_template('index.html', meme_pic=meme_pic)
 
 app.run(host='0.0.0.0', port=443)
