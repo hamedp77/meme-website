@@ -1,13 +1,12 @@
 from flask import Flask, render_template
 import requests
-import json
 
 app = Flask(__name__)
 
 def get_meme():
 
     meme_endpoint = 'https://meme-api.com/gimme'
-    response = json.loads(requests.get(meme_endpoint).text)
+    response = requests.get(meme_endpoint).json()
     meme_pic = response['preview'][-1]
 
     return meme_pic
